@@ -2,6 +2,7 @@ extends Node   # Autoload
 
 const PORT := 4242
 const MAX_CLIENTS := 8
+const WORLD_SCENE_PATH := "res://Scenes/main_scene.tscn"
 
 # Use Copy Path on your player scene in the FileSystem and paste here:
 const PLAYER_SCENE: PackedScene = preload("res://Scenes/Player.tscn")
@@ -46,13 +47,25 @@ func _on_peer_connected(id: int) -> void:
 # ----------------- WORLD + SPAWN HELPERS -----------------
 
 func _get_world() -> Node:
-	# root is the Viewport; Main_Scene is your world node under it
-	var root := get_tree().root
-	var world := root.get_node_or_null("Main_Scene")
-	if world == null:
-		push_error("Could not find 'Main_Scene' under root. Check the node name.")
-		return root  # fallback just so it doesn't crash
-	return world
+        # If we're still in the start menu, make sure the actual world is loaded
+        var tree := get_tree()
+
+        var world := tree.root.get_node_or_null("Main_Scene")
+        if world:
+                return world
+
+        # try current scene before forcing a change
+        var current := tree.current_scene
+        if current and current.name == "Main_Scene":
+                return current
+
+        # load the main scene so multiplayer can spawn players
+        var err := tree.change_scene_to_file(WORLD_SCENE_PATH)
+        if err != OK:
+                push_error("Could not change to main scene: %s" % err)
+                return tree.root
+
+        return tree.current_scene
 
 
 func _spawn_player(id: int) -> void:
