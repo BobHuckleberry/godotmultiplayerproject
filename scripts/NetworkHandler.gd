@@ -59,30 +59,9 @@ func _on_connected_to_server() -> void:
 	_rpc_spawn_player.rpc(multiplayer.get_unique_id())
 
 
-# ----------------- WORLD + SPAWN HELPERS -----------------
+# ----------------- WORLD +wwdad SPAWN HELPERS -----------------
 
 func _get_world() -> Node:
-<<<<<<< HEAD
-		# If we're still in the start menu, make sure the actual world is loaded
-		var tree := get_tree()
-
-		var world := tree.root.get_node_or_null("Main_Scene")
-		if world:
-				return world
-
-		# try current scene before forcing a change
-		var current := tree.current_scene
-		if current and current.name == "Main_Scene":
-				return current
-
-		# load the main scene so multiplayer can spawn players
-		var err := tree.change_scene_to_file(WORLD_SCENE_PATH)
-		if err != OK:
-				push_error("Could not change to main scene: %s" % err)
-				return tree.root
-
-		return tree.current_scene
-=======
 	# If we're still in the start menu, make sure the actual world is loaded
 	var tree := get_tree()
 
@@ -102,7 +81,6 @@ func _get_world() -> Node:
 		return tree.root
 
 	return tree.current_scene
->>>>>>> 387258282477156cb1cea873f11e2c4e81cb6d9c
 
 
 @rpc("any_peer", "call_local")
