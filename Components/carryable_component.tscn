@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8xb2pi1wu00q"]
+
+[ext_resource type="Script" uid="uid://iadqpq8cbvho" path="res://scripts/carryable_component.gd" id="1_kivxx"]
+
+[node name="CarryableComponent" type="Node3D"]
+script = ExtResource("1_kivxx")

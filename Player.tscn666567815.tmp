@@ -1,0 +1,43 @@
+[gd_scene load_steps=9 format=3 uid="uid://bub68qvhjpocu"]
+
+[ext_resource type="Script" uid="uid://b4fe7ml0212w4" path="res://scripts/player.gd" id="1_xhfnw"]
+[ext_resource type="PackedScene" uid="uid://dlmys7mj4dna1" path="res://Components/grab_component.tscn" id="2_kpjcp"]
+[ext_resource type="Script" path="res://grab_component.gd" id="3_e80uo"]
+[ext_resource type="PackedScene" uid="uid://dkfs5qplltnnx" path="res://Components/interactor_component.tscn" id="3_kne1u"]
+[ext_resource type="PackedScene" path="res://grab_handle.tscn" id="4_cxr5p"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_0rwas"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_cxr5p"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_kne1u"]
+auto_exposure_enabled = true
+auto_exposure_speed = 0.2
+auto_exposure_max_sensitivity = 400.0
+
+[node name="Player" type="CharacterBody3D"]
+safe_margin = 0.002
+script = ExtResource("1_xhfnw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visibility_range_end = 2.1
+mesh = SubResource("CylinderMesh_0rwas")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_cxr5p")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7967431, -0.10358173)
+
+[node name="GrabComponent" parent="Head" instance=ExtResource("2_kpjcp")]
+target_position = Vector3(0, 0, -4)
+script = ExtResource("3_e80uo")
+grab_handle_scene = ExtResource("4_cxr5p")
+
+[node name="InteractorComponent" parent="Head" node_paths=PackedStringArray("player") instance=ExtResource("3_kne1u")]
+target_position = Vector3(0, 0, -4)
+player = NodePath("../..")
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00025689602, 0.017658055)
+attributes = SubResource("CameraAttributesPractical_kne1u")

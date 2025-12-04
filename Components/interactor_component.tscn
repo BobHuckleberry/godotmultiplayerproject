@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dkfs5qplltnnx"]
+
+[ext_resource type="Script" uid="uid://d4h3rdvs6uia5" path="res://scripts/interactor_component.gd" id="1_dsm0r"]
+
+[node name="InteractorComponent" type="RayCast3D"]
+script = ExtResource("1_dsm0r")

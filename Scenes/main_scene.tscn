@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://bed6fd28twrkd"]
+
+[ext_resource type="PackedScene" uid="uid://k6i2xyfa6qyl" path="res://Scenes/carrot.tscn" id="1_6l7je"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0f027"]
+
+[sub_resource type="Sky" id="Sky_2c62f"]
+sky_material = SubResource("ProceduralSkyMaterial_0f027")
+
+[sub_resource type="Environment" id="Environment_0f027"]
+background_mode = 2
+sky = SubResource("Sky_2c62f")
+
+[node name="Main_Scene" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0f027")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(20, 0, 0, 0, 0.1, 0, 0, 0, 20, 0.135149, -5.656366, -0.9636841)
+
+[node name="Carrot" parent="." instance=ExtResource("1_6l7je")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8945282, 0.6077945, 0.9645529)
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("uid://bub68qvhjpocu")
+spawn_path = NodePath("..")

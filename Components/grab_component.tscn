@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlmys7mj4dna1"]
+
+[ext_resource type="Script" uid="uid://bkn6hlgvj7ruj" path="res://scripts/grab_component.gd" id="1_81jhm"]
+[ext_resource type="PackedScene" uid="uid://bmkt4le2u8jyo" path="res://Scenes/grab_handle.tscn" id="2_ymmsh"]
+
+[node name="GrabComponent" type="RayCast3D"]
+script = ExtResource("1_81jhm")
+grab_handle_scene = ExtResource("2_ymmsh")
