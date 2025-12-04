@@ -107,7 +107,12 @@ func _configure_spawner(spawner: MultiplayerSpawner) -> MultiplayerSpawner:
 
 
 func _spawn_custom_player(data) -> Node:
-	var id := int(data)
+	var payload: Dictionary = {}
+	if data is Dictionary:
+		payload = data
+	else:
+		payload["player_id"] = data
+	var id := int(payload.get("player_id", 0))
 	var player := PLAYER_SCENE.instantiate()
 	player.name = str(id)
 	player.set_multiplayer_authority(id)
@@ -127,7 +132,7 @@ func _spawn_player(id: int) -> void:
 		return
 
 	# this runs only on the server; spawner will replicate to clients
-	spawner.spawn(id)
+	spawner.spawn({"player_id": id})
 	_spawned_player_ids.append(id)
 	print("Spawned player", id, "via MultiplayerSpawner")
 
