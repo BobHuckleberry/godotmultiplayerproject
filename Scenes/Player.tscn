@@ -29,7 +29,6 @@ safe_margin = 0.004
 script = ExtResource("1_cxr5p")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-visibility_range_end = 2.1
 mesh = SubResource("CylinderMesh_0rwas")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
