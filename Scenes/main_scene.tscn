@@ -12,8 +12,10 @@ background_mode = 2
 sky = SubResource("Sky_2c62f")
 
 [sub_resource type="QuadMesh" id="QuadMesh_52fb6"]
+size = Vector2(2, 3)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6l7je"]
+size = Vector3(1.9816895, 2.9245605, 1)
 
 [node name="Main_Scene" type="Node3D"]
 
@@ -39,7 +41,7 @@ spawn_path = NodePath("..")
 [node name="Node3D" type="Node3D" parent="."]
 
 [node name="PORTAL" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.212667, -18.541817)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.107594, -18.541817)
 
 [node name="SubViewport" type="SubViewport" parent="PORTAL"]
 
@@ -49,4 +51,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.212667, -18.541817)
 mesh = SubResource("QuadMesh_52fb6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PORTAL"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008911133, -0.020874023, 0)
 shape = SubResource("BoxShape3D_6l7je")
