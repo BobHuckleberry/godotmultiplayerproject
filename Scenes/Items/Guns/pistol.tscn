@@ -16,6 +16,7 @@ size = Vector3(0.30688477, 0.59350586, 1.2485352)
 [sub_resource type="BoxMesh" id="BoxMesh_46iok"]
 
 [node name="Pistol" type="RigidBody3D"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.001953125, -0.153656, 0.08911133)
@@ -36,7 +37,11 @@ transform = Transform3D(0.30354887, 0, 0, 0, 0.5931724, 0, 0, 0, 0.29542857, 0, 
 mesh = SubResource("BoxMesh_46iok")
 
 [node name="CarryableComponent" parent="." instance=ExtResource("1_46iok")]
+weight_kg = 1.0
 
 [node name="InteractableComponent" parent="." instance=ExtResource("2_dwr3s")]
 
-[node name="WeaponComponent" parent="." instance=ExtResource("3_dwr3s")]
+[node name="WeaponAdjustmentComponent" parent="." instance=ExtResource("3_dwr3s")]
+
+[node name="GunTip (Marker)" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.7151599)

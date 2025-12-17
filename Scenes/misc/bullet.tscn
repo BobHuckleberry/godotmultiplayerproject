@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://coje8glg4ji1x"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_allkr"]
+size = Vector3(1.2216797, 1, 2.2769928)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_allkr"]
+
+[node name="Bullet" type="Area3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, -0.00035156216, 0, -0.0026763915)
+shape = SubResource("BoxShape3D_allkr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.08, 0, 0, 0, -3.496911e-09, -0.08, 0, 0.08, -3.496911e-09, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_allkr")
