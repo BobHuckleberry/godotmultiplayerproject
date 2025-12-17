@@ -1,9 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cffd6xeayjjhh"]
+[gd_scene load_steps=9 format=3 uid="uid://bed6fd28twrkd"]
 
 [ext_resource type="Material" uid="uid://bb8m1ssxop1lc" path="res://materials/temp.tres" id="1_x6ack"]
+[ext_resource type="PackedScene" uid="uid://bub68qvhjpocu" path="res://Scenes/Player.tscn" id="3_jv6wh"]
 [ext_resource type="PackedScene" uid="uid://cwptco35xbqhy" path="res://Scenes/UI/GameUI.tscn" id="5_iacmt"]
 [ext_resource type="PackedScene" uid="uid://dij5iy6yp6kb2" path="res://Scenes/Blocks/LuckyBlock.tscn" id="6_6ev3c"]
-[ext_resource type="PackedScene" uid="uid://c0ssko1bsuxwv" path="res://Scenes/Items/Guns/pistol.tscn" id="6_huasi"]
 [ext_resource type="Script" uid="uid://cuwilt6y3nagp" path="res://scripts/LuckyBlockManager.gd" id="6_maf8m"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0f027"]
@@ -38,8 +38,11 @@ size = Vector3(15, 2, 15)
 material = ExtResource("1_x6ack")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("uid://baenvbg83dpvo")
+_spawnable_scenes = PackedStringArray("uid://bub68qvhjpocu")
 spawn_path = NodePath("..")
+
+[node name="Player" parent="." instance=ExtResource("3_jv6wh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5155258, -4.606367, 5.913927)
 
 [node name="GameUi" parent="." instance=ExtResource("5_iacmt")]
 
@@ -50,5 +53,5 @@ spawn_path = NodePath("..")
 [node name="LuckyBlockManager" type="Node3D" parent="GameManager"]
 script = ExtResource("6_maf8m")
 
-[node name="Pistol" parent="." instance=ExtResource("6_huasi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9145174, -10.091939, 1.3926601)
+[node name="Gun" parent="." instance=ExtResource("6_6ev3c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.088397)

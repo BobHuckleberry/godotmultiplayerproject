@@ -52,12 +52,6 @@ var wants_to_sprint: bool = false
 var wants_to_crouch: bool = false
 var wants_to_interact: bool = false
 
-#used for inputs
-enum PlayerState {ON_FOOT,
-				   DRIVING}
-
-var player_state: PlayerState = PlayerState.ON_FOOT
-var current_vehicle: Vehicle = null
 
 @onready var grab := $Head/GrabComponent
 @onready var head: Node3D = $Head
@@ -88,11 +82,8 @@ func _physics_process(delta: float) -> void:
 	if not is_multiplayer_authority():
 		return
 
-	match player_state:
-		PlayerState.ON_FOOT:
-			_read_input()
-		PlayerState.DRIVING:
-			_read_driving_input()
+	_read_input()
+
 
 	#These functions check for certain conditions and updates the player accordingly 
 	_apply_gravity(delta)
@@ -140,37 +131,6 @@ func _read_input() -> void:
 	if Input.is_action_just_pressed("Interact"):
 		interactor.try_interact()
 
-func _read_driving_input() -> void:
-	#null check
-	if current_vehicle == null:
-		player_state = PlayerState.ON_FOOT
-		return
-	var throttle := 0.0
-	var steer := 0.0
-	var brake := 0.0
-	
-	if Input.is_action_pressed("drive_accelerate"):
-		throttle = 1.0
-	elif Input.is_action_pressed("drive_reverse"):
-		throttle = -1.0
-
-	if Input.is_action_pressed("drive_steer_left"):
-		steer = -1.0
-	elif Input.is_action_pressed("drive_steer_right"):
-		steer = 1.0
-
-	if Input.is_action_pressed("drive_brake"):
-		brake = 1.0
-	
-	#Sends it to current car
-	current_vehicle.apply_input(throttle, steer, brake)
-	
-	#E to exit
-	if Input.is_action_just_pressed("interact"):
-		exit_vehicle()
-	
-	if Input.is_action_just_pressed("Escape"):
-		mouse_locked = !mouse_locked
 
 
 # ------ HELPER: PHYSICS/MOVEMENT ------
@@ -231,13 +191,3 @@ func _apply_camera_motion(delta: float) -> void:
 	sway_target = -_input_dir.x * sway_amount
 	sway_current = lerp(sway_current, sway_target, delta * sway_smooth)
 	camera.rotation.z = sway_current
-
-func exit_vehicle() -> void:
-	if current_vehicle:
-		current_vehicle.clear_input()
-	current_vehicle = null
-	player_state = PlayerState.ON_FOOT
-	
-func enter_vehicle(vehicle: Vehicle) -> void:
-	current_vehicle = vehicle
-	player_state = PlayerState.DRIVING

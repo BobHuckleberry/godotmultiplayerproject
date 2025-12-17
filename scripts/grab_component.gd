@@ -2,8 +2,14 @@ extends RayCast3D
 class_name GrabComponent
 
 @export_category("Grab Handle")
-@export var grab_handle_scene: PackedScene   # assign GrabHandle.tscn
+@export var grab_handle_scene: PackedScene
 
+@export_category("Weapon Grab Rotation")
+@export var weapon_face_away_speed: float = 10.0 
+@export var weapon_max_angular_speed: float = 20.0
+
+var weapon_adjustment: Node = null
+var weapon_is_grabbed: bool = false
 
 var current_target: CarryableComponent = null
 var grabbed_body: RigidBody3D = null
@@ -157,6 +163,7 @@ func _release_grab() -> void:
 	joint = null
 	grabbed_body = null
 	handle_velocity = Vector3.ZERO
+	
 
 
 # Search funcs

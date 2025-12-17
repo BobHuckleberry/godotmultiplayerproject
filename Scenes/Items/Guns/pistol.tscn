@@ -1,0 +1,42 @@
+[gd_scene load_steps=9 format=3 uid="uid://c0ssko1bsuxwv"]
+
+[ext_resource type="PackedScene" uid="uid://c8xb2pi1wu00q" path="res://Components/carryable_component.tscn" id="1_46iok"]
+[ext_resource type="PackedScene" uid="uid://c5mbxyrq38rl1" path="res://Components/interactable_component.tscn" id="2_dwr3s"]
+[ext_resource type="PackedScene" uid="uid://d4kdd2km5fnl4" path="res://Components/weapon_adjustment_component.tscn" id="3_dwr3s"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8tvxp"]
+size = Vector3(0.30688477, 0.59350586, 1.2485352)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dpx3w"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dpx3w"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_8tvxp"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_46iok"]
+
+[node name="Pistol" type="RigidBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.001953125, -0.153656, 0.08911133)
+shape = SubResource("BoxShape3D_8tvxp")
+
+[node name="GunBodyMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.30930048, 0, 0, 0, 0.29061526, 0, 0, 0, 1.0704303, 0, 0, 0)
+mesh = SubResource("BoxMesh_dpx3w")
+surface_material_override/0 = SubResource("StandardMaterial3D_dpx3w")
+
+[node name="GunTip" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3093005, 0, 0, 0, 0.2906153, 0, 0, 0, 0.19115253, 0.0020795614, 0, 0.6171708)
+mesh = SubResource("BoxMesh_8tvxp")
+skeleton = NodePath("../GunBodyMesh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.30354887, 0, 0, 0, 0.5931724, 0, 0, 0, 0.29542857, 0, -0.15751582, -0.38591385)
+mesh = SubResource("BoxMesh_46iok")
+
+[node name="CarryableComponent" parent="." instance=ExtResource("1_46iok")]
+
+[node name="InteractableComponent" parent="." instance=ExtResource("2_dwr3s")]
+
+[node name="WeaponComponent" parent="." instance=ExtResource("3_dwr3s")]

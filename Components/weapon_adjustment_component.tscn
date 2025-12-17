@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d4kdd2km5fnl4"]
+
+[ext_resource type="Script" uid="uid://cqsr50xwwkl6k" path="res://scripts/weapon_adjustment_component.gd" id="1_7x0xo"]
+
+[node name="WeaponAdjustmentComponent" type="Node3D"]
+script = ExtResource("1_7x0xo")
