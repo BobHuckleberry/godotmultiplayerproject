@@ -1,9 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://c0ssko1bsuxwv"]
+[gd_scene load_steps=12 format=3 uid="uid://c0ssko1bsuxwv"]
 
 [ext_resource type="Script" uid="uid://4wdy3ucv6vn3" path="res://Scenes/Items/Guns/pistol.gd" id="1_0yr3f"]
 [ext_resource type="PackedScene" uid="uid://c8xb2pi1wu00q" path="res://Components/carryable_component.tscn" id="1_46iok"]
 [ext_resource type="PackedScene" uid="uid://c5mbxyrq38rl1" path="res://Components/interactable_component.tscn" id="2_dwr3s"]
-[ext_resource type="PackedScene" uid="uid://coje8glg4ji1x" path="res://Scenes/misc/bullet.tscn" id="2_kyq5h"]
 [ext_resource type="PackedScene" uid="uid://d4kdd2km5fnl4" path="res://Components/weapon_adjustment_component.tscn" id="3_dwr3s"]
 [ext_resource type="Script" uid="uid://wwn1a5sxipg6" path="res://Scenes/Items/Guns/weapon_shoot_component.gd" id="4_tphca"]
 [ext_resource type="Script" uid="uid://by4rewxqlteje" path="res://Scenes/Items/Guns/weapon_ammo_component.gd" id="5_0yr3f"]
@@ -22,7 +21,6 @@ size = Vector3(0.30688477, 0.59350586, 1.2485352)
 [node name="Pistol" type="RigidBody3D"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 script = ExtResource("1_0yr3f")
-bullet_scene = ExtResource("2_kyq5h")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.001953125, -0.153656, 0.08911133)
@@ -51,7 +49,7 @@ interaction_owner = NodePath("../WeaponShootComponent")
 [node name="WeaponAdjustmentComponent" parent="." instance=ExtResource("3_dwr3s")]
 
 [node name="GunTip (Marker)" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.7151599)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.9760537)
 
 [node name="WeaponShootComponent" type="Node3D" parent="."]
 script = ExtResource("4_tphca")
