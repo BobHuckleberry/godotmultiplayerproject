@@ -17,13 +17,13 @@ func _ready() -> void:
 		print("[Pistol] ERROR: missing WeaponShootComponent")
 
 
-func _on_shoot(_interactor: Node) -> void:
+func _on_shoot(interactor: Node) -> void:
 	print("[Pistol] shoot signal received, spawning bullet")
-	_spawn_bullet()
+	_spawn_bullet(interactor)
 	print("[Pistol] Bullet Spawned")
 
 
-func _spawn_bullet() -> void:
+func _spawn_bullet(interactor: Node = null) -> void:
 	if bullet_scene == null:
 		push_error("Pistol bullet_scene is not assigned.")
 		return
@@ -46,6 +46,20 @@ func _spawn_bullet() -> void:
 
 	var forward := gun_tip.global_transform.basis.z.normalized()
 	if bullet is Bullet:
-		(bullet as Bullet).direction = forward
+		var bullet_instance := bullet as Bullet
+		bullet_instance.direction = forward
+		bullet_instance.ignore_collision_with(self)
+		var shooter_body := _find_collision_object(interactor)
+		if shooter_body:
+			bullet_instance.ignore_collision_with(shooter_body)
 	elif bullet.has_method("set_direction"):
 		bullet.call("set_direction", forward)
+
+
+func _find_collision_object(start: Node) -> CollisionObject3D:
+	var current: Node = start
+	while current:
+		if current is CollisionObject3D:
+			return current as CollisionObject3D
+		current = current.get_parent()
+	return null

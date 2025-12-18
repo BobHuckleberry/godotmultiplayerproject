@@ -57,3 +57,5 @@ ammo_component_path = NodePath("../WeaponAmmoComponent")
 
 [node name="WeaponAmmoComponent" type="Node3D" parent="."]
 script = ExtResource("5_0yr3f")
+ammo_in_clip = 100
+clip_size = 100
