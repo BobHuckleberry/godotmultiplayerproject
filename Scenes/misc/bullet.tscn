@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://coje8glg4ji1x"]
+[gd_scene load_steps=4 format=3 uid="uid://coje8glg4ji1x"]
+
+[ext_resource type="Script" uid="uid://h6upajjadl3" path="res://Scenes/misc/bullet.gd" id="1_6glc3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_allkr"]
 size = Vector3(1.2216797, 1, 2.2769928)
@@ -6,6 +8,8 @@ size = Vector3(1.2216797, 1, 2.2769928)
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_allkr"]
 
 [node name="Bullet" type="Area3D"]
+script = ExtResource("1_6glc3")
+speed = 20.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, -0.00035156216, 0, -0.0026763915)

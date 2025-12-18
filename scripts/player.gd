@@ -129,7 +129,14 @@ func _read_input() -> void:
 		wants_to_grab = false
 		grab._release_grab()
 	if Input.is_action_just_pressed("Interact"):
-		interactor.try_interact()
+		if not _try_shoot_grabbed_weapon():
+			var grabbed_interactable := _get_grabbed_interactable()
+			if grabbed_interactable:
+				interactor.start_interact(grabbed_interactable)
+			else:
+				interactor.start_interact()
+	if Input.is_action_just_released("Interact"):
+		interactor.end_interact()
 
 
 
@@ -191,3 +198,43 @@ func _apply_camera_motion(delta: float) -> void:
 	sway_target = -_input_dir.x * sway_amount
 	sway_current = lerp(sway_current, sway_target, delta * sway_smooth)
 	camera.rotation.z = sway_current
+
+
+func _get_grabbed_interactable() -> InteractableComponent:
+	if grab.grabbed_body == null:
+		return null
+	return _find_interactable_recursive(grab.grabbed_body)
+
+
+func _find_interactable_recursive(node: Node) -> InteractableComponent:
+	if node is InteractableComponent:
+		return node
+	for child in node.get_children():
+		var found := _find_interactable_recursive(child)
+		if found:
+			return found
+	return null
+
+
+func _try_shoot_grabbed_weapon() -> bool:
+	var shoot_component := _get_grabbed_weapon_shoot_component()
+	if shoot_component == null:
+		return false
+	shoot_component.try_shoot(grab)
+	return true
+
+
+func _get_grabbed_weapon_shoot_component() -> WeaponShootComponent:
+	if grab.grabbed_body == null:
+		return null
+	return _find_weapon_shoot_recursive(grab.grabbed_body)
+
+
+func _find_weapon_shoot_recursive(node: Node) -> WeaponShootComponent:
+	if node is WeaponShootComponent:
+		return node
+	for child in node.get_children():
+		var found := _find_weapon_shoot_recursive(child)
+		if found:
+			return found
+	return null

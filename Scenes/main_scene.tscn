@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://cffd6xeayjjhh"]
+[gd_scene load_steps=11 format=3 uid="uid://cffd6xeayjjhh"]
 
 [ext_resource type="Material" uid="uid://bb8m1ssxop1lc" path="res://materials/temp.tres" id="1_x6ack"]
 [ext_resource type="PackedScene" uid="uid://cwptco35xbqhy" path="res://Scenes/UI/GameUI.tscn" id="5_iacmt"]
 [ext_resource type="PackedScene" uid="uid://dij5iy6yp6kb2" path="res://Scenes/Blocks/LuckyBlock.tscn" id="6_6ev3c"]
 [ext_resource type="PackedScene" uid="uid://c0ssko1bsuxwv" path="res://Scenes/Items/Guns/pistol.tscn" id="6_huasi"]
+[ext_resource type="PackedScene" uid="uid://coje8glg4ji1x" path="res://Scenes/misc/bullet.tscn" id="6_m1efj"]
 [ext_resource type="Script" uid="uid://cuwilt6y3nagp" path="res://scripts/LuckyBlockManager.gd" id="6_maf8m"]
+[ext_resource type="PackedScene" uid="uid://b2jadhxxlwdvf" path="res://Scenes/Blocks/physics_test_box.tscn" id="7_maf8m"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0f027"]
 
@@ -52,3 +54,23 @@ script = ExtResource("6_maf8m")
 
 [node name="Pistol" parent="." instance=ExtResource("6_huasi")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 2.1527188, -10.091938, 0.654173)
+
+[node name="Bullet" parent="." instance=ExtResource("6_m1efj")]
+
+[node name="PhysicsTestBox" parent="." instance=ExtResource("7_maf8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6138935, -9.887616, 10.525282)
+
+[node name="PhysicsTestBox2" parent="." instance=ExtResource("7_maf8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4081678, -9.887616, 10.525282)
+
+[node name="PhysicsTestBox3" parent="." instance=ExtResource("7_maf8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1316404, -9.887616, 10.525282)
+
+[node name="PhysicsTestBox4" parent="." instance=ExtResource("7_maf8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0752316, -8.815918, 10.525282)
+
+[node name="PhysicsTestBox5" parent="." instance=ExtResource("7_maf8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6484456, -8.821562, 10.525282)
+
+[node name="PhysicsTestBox6" parent="." instance=ExtResource("7_maf8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4424691, -7.6356115, 10.525282)

@@ -3,6 +3,7 @@ class_name InteractorComponent
 
 @export var player: Node3D
 var current_target: InteractableComponent = null
+var active_interaction_target: InteractableComponent = null
 
 func _physics_process(_delta: float) -> void:
 	force_raycast_update()
@@ -28,7 +29,17 @@ func _physics_process(_delta: float) -> void:
 
 
 func try_interact() -> void:
-	print("trying")
-	if current_target:
-		print(current_target)
-		current_target.interact(self)
+	start_interact()
+
+
+func start_interact(target: InteractableComponent = null) -> void:
+	var chosen := target if target != null else current_target
+	if chosen:
+		active_interaction_target = chosen
+		chosen.start_interact(self)
+
+
+func end_interact() -> void:
+	if active_interaction_target and is_instance_valid(active_interaction_target):
+		active_interaction_target.end_interact(self)
+	active_interaction_target = null

@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2jadhxxlwdvf"]
+
+[ext_resource type="PackedScene" uid="uid://c8xb2pi1wu00q" path="res://Components/carryable_component.tscn" id="1_3kvny"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e3gbk"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_3kvny"]
+
+[node name="PhysicsTestBox" type="RigidBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_e3gbk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_3kvny")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="CarryableComponent" parent="." instance=ExtResource("1_3kvny")]
